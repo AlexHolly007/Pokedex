@@ -4,11 +4,11 @@ The inputs are a file in the correct format(shown below), and user entries to na
 
 INPUT FILE REQUIRMENTS  (angled brackets do not need to be there)
 
-<number of pokemon>
-<pokemon index number> <name of pokemon> <pokemon type> <number of moves>
-<move 1> <move 2> ...
-<pokemon index number> <name of pokemon> <pokemon type> <number of moves>
-<move 1> <move 2> ...
+{number of pokemon}
+{pokemon index number} {name of pokemon} {pokemon type} {number of moves}
+{move 1} {move 2} ... 
+{pokemon index number} {name of pokemon} {pokemon type} {number of moves}
+{move 1} {move 2} ...
   etc..
 
 A structure will be created within the porgram that can be used to search for any 'mon by their dex num, name, or type.
