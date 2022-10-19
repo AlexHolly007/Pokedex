@@ -1,4 +1,5 @@
 #include "pokemon.h"
+//edited
 
 void copy_file(ifstream& file, pokedex& ur_dex) {
     for (int po=0; po<ur_dex.num_pokes; po++) {
