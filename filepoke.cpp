@@ -18,6 +18,7 @@ void copy_file(ifstream& file, pokedex& ur_dex) {
 
 }
 
+
 void populate_moves(int num, pokedex& ur_dex) {
     ur_dex.pokes[ur_dex.num_pokes - 1].moves = new string[num];
     for (int i=0;i<num; i++){
@@ -37,11 +38,10 @@ void get_trainer_and_num(pokedex& ur_dex, ifstream& file){
     ur_dex.trainer = name;
 
     cout << "Hi " << ur_dex.trainer << "! Those " << ur_dex.num_pokes << " pokemon have been registered to your pokedex!" << endl << endl;
-    
-
 }
 
-void print_poke(pokedex& ur_dex, ofstream& ofile, int num, ifstream& file) {
+
+void print_poke(pokedex& ur_dex, ofstream& ofile, int num) {
     cout << "Index Number: " << ur_dex.pokes[num].dex << "       Name: " << ur_dex.pokes[num].name << endl;
     cout << "Type: " << ur_dex.pokes[num].type << "       Number of Moves: " << ur_dex.pokes[num].num_moves << endl;
     cout << "Moves: ";
@@ -50,7 +50,7 @@ void print_poke(pokedex& ur_dex, ofstream& ofile, int num, ifstream& file) {
         cout << "  ";
     }
     cout << endl << endl;
-    give_options(ur_dex, file, ofile);
+    give_options(ur_dex, ofile);
 }
 
 
@@ -67,7 +67,7 @@ void new_pokes_info(pokedex& ur_dex) {
 }
 
 
-void add_new_pokemon(pokedex& ur_dex, ofstream& ofile, ifstream& file)  {
+void add_new_pokemon(pokedex& ur_dex, ofstream& ofile)  {
     
     pokemon temp[ur_dex.num_pokes];
     for (int i=0; i<ur_dex.num_pokes; i++) {
@@ -94,24 +94,37 @@ void add_new_pokemon(pokedex& ur_dex, ofstream& ofile, ifstream& file)  {
     }
     new_pokes_info(ur_dex);
     cout << "Congrats, " << ur_dex.pokes[ur_dex.num_pokes - 1].name << " has been added to this pokedex!." << endl;
-    print_poke(ur_dex, ofile,(ur_dex.num_pokes-1), file);
+    print_poke(ur_dex, ofile,(ur_dex.num_pokes-1));
 }
 
-void give_options(pokedex& ur_dex, ifstream& file, ofstream& ofile) {
+
+void search_by_dex(pokedex& ur_dex, ofstream& ofile) {
+    cout << "What index number would you like to search for? :  ";
+    int dexi;
+    cin >> dexi;
+    for (int i=0; i<ur_dex.num_pokes; i++) {
+        if (ur_dex.pokes[i].dex == dexi) {
+            cout << endl << endl << "This pokemon had your searched dex number of " << dexi << endl;
+            print_poke(ur_dex, ofile, i);
+        }
+    }
+}
+
+
+void give_options(pokedex& ur_dex, ofstream& ofile) {
     cout << "What would you like to do?" << endl << "  (D) Search your pokedex by Pokemon dex number" << endl;
     cout << "  (N) Search your pokedex by name of Pokemon" << endl << "  (T) Search for Pokemon by type in your pokedex" << endl;
     cout << "  (A) Add a new Pokemon to your pokedex" << endl << "  (Q) Quit" << endl;
     string ans;
     cin >> ans;
     if (ans == "A") {
-        add_new_pokemon(ur_dex, ofile, file);    }
+        add_new_pokemon(ur_dex, ofile);    }
     if (ans == "Q")  {
         exit; }
     if (ans == "D") {
-
-    }
+        search_by_dex(ur_dex, ofile);     }
     if (ans == "N")  {
-
+        
     }
     if (ans == "T")  {
 
@@ -138,5 +151,5 @@ int main() {
 
     copy_file(file, ur_dex);
 
-    give_options(ur_dex, file, ofile);
+    give_options(ur_dex, ofile);
 }
