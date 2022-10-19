@@ -1,5 +1,5 @@
 2
 3 Bulby grass 2
 whip tackle
-8 pika electric 1
-shock
+8 pika electric 3
+shock growl spark
