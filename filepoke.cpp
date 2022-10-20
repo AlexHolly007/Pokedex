@@ -1,6 +1,5 @@
 #include "pokemon.h"
 //edited
-//again
 
 void copy_file(ifstream& file, pokedex& ur_dex) {
     for (int po=0; po<ur_dex.num_pokes; po++) {
@@ -113,6 +112,19 @@ void search_by_dex(pokedex& ur_dex, ofstream& ofile) {
 }
 
 
+void search_by_name(pokedex& ur_dex, ofstream& ofile)  {
+    cout << "What name of the Pokemon you would like to search for? :  ";
+    string name;
+    cin >> name;
+    for (int i=0; i<ur_dex.num_pokes; i++) {
+        if (ur_dex.pokes[i].name == name) {
+            cout << endl << endl << "Pokemon found by search of name: " << name << endl;
+            print_poke(ur_dex, ofile, i);
+        }
+    }
+}
+
+
 void give_options(pokedex& ur_dex, ofstream& ofile) {
     cout << "What would you like to do?" << endl << "  (D) Search your pokedex by Pokemon dex number" << endl;
     cout << "  (N) Search your pokedex by name of Pokemon" << endl << "  (T) Search for Pokemon by type in your pokedex" << endl;
@@ -126,7 +138,7 @@ void give_options(pokedex& ur_dex, ofstream& ofile) {
     if (ans == "D") {
         search_by_dex(ur_dex, ofile);     }
     if (ans == "N")  {
-
+        search_by_name(ur_dex, ofile);
     }
     if (ans == "T")  {
 
