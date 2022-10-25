@@ -1,5 +1,8 @@
 #include "pokemon.h"
 
+
+/* This function takes the file that was inputed and the pokedex. It goes through the file and
+copies the pokemon information if the structure, the completed structure is returned*/
 void populate_pokemon(ifstream& file, pokedex& ur_dex) {
     for (int po=0; po<ur_dex.num_pokes; po++) {
         int dex_num;
@@ -18,7 +21,8 @@ void populate_pokemon(ifstream& file, pokedex& ur_dex) {
 
 }
 
-
+/* this function takes the empty pokedex and collects the users name. Also it takes the file first number, and inputs
+this into the dex as the number of pokes*/
 void populate_pokedex_data(pokedex& ur_dex, ifstream& file){
     file >> ur_dex.num_pokes;
     cout << "Welcome trainer, what is your name?:  ";
@@ -30,7 +34,7 @@ void populate_pokedex_data(pokedex& ur_dex, ifstream& file){
     
 }
 
-
+/*creates pokemon structure array size of inputed number from the file.*/
 pokemon* create_pokemons(int size) {
     return new pokemon[size];
 }
